@@ -40,7 +40,7 @@ const Register = () => {
         formData.set('email', email);
         formData.set('password', password);
         formData.set('avatar', avatar);
-
+        console.log(user,[...formData]);
         register(formData)
     }
 
@@ -69,7 +69,7 @@ const Register = () => {
                     
                 }
             }
-
+            console.log(userData); 
             const { data } = await axios.post(`${process.env.REACT_APP_API}/api/v1/register`, userData, config)
             console.log(data)
             setIsAuthenticated(true)
