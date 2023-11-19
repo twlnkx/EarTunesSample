@@ -5,6 +5,7 @@ const crypto = require('crypto')
 const cloudinary = require('cloudinary')
 
 exports.registerUser = async (req, res, next) => {
+    console.log("No");
     const result = await cloudinary.v2.uploader.upload(req.body.avatar, {
         folder: 'avatars',
         width: 150,
@@ -12,6 +13,7 @@ exports.registerUser = async (req, res, next) => {
     }, (err, res) => {
         console.log(err, res);
     });
+    console.log("Ye");
     const { name, email, password, role } = req.body;
     const user = await User.create({
         name,
@@ -32,6 +34,11 @@ exports.registerUser = async (req, res, next) => {
     //  	token
     //   })
     sendToken(user, 200, res)
+    console.log(user);
+}
+
+exports.registerUser = async (req,res,next)=>{
+    return res.status(200).json({success:true});
 }
 
 exports.loginUser = async (req, res, next) => {
