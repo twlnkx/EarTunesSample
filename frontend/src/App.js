@@ -13,8 +13,17 @@ import NewProduct from './Components/Admin/newProduct';
 
 
 function App() {
+  fetch("api/register",{
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "post",
+      });
+
   return (
     <div className="App">
+
+    
 
       <Router>
         <Header />
@@ -23,7 +32,7 @@ function App() {
           
           <Route path="/register" element={<Register />} exact="true" />
           <Route path="/login" element={<Login />} exact="true" />
-          <Route path="/admin/product" element={<NewProduct />} exact="true" />
+          {/* <Route path="/admin/product" element={<NewProduct />} exact="true" /> */}
           {/* <Route path="/me" element={<Profile />} exact="true" /> */}
         </Routes>
       </Router>
