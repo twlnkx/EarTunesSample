@@ -55,7 +55,9 @@ const Register = () => {
             }
             reader.readAsDataURL(e.target.files[0])
         } else {
-            setUser({ ...user, [e.target.name]: e.target.value })
+            const tmpUser = { ...user, [e.target.name]: e.target.value }
+            // setUser({ ...user, [e.target.name]: e.target.value })
+            setUser(tmpUser);
         }
     }
 
@@ -78,7 +80,7 @@ const Register = () => {
         } catch (error) {
             setIsAuthenticated(false)
             setLoading(false)
-            setUser(null)
+            setUser({})
             setError(error)
             console.log(error)
         }

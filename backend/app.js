@@ -6,12 +6,12 @@ const cors = require('cors')
 const products = require("./routes/product");
 const auth = require('./routes/auth')
 
-app.use(function(req,res,next){
-    res.set({
-        "Access-Control-Allow-Origin": "http://localhost:4012",
-        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS" 
-    })
-})
+// app.use(function(req,res,next){
+//     res.set({
+//         "Access-Control-Allow-Origin": "http://localhost:4012",
+//         "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS" 
+//     })
+// })
 app.use(cors())
 app.use(express.json({limit:'50mb'}));
 
