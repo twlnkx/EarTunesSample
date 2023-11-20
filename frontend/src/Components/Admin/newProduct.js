@@ -2,10 +2,11 @@ import React, { Fragment, useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import MetaData from '../Layout/Metadata'
 // import Sidebar from './SideBar'
-import { getToken } from '../../utils/helpers';
+import { authenticate, getToken } from '../../utils/helpers';
 import axios from 'axios'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
 
 const NewProduct = () => {
 
@@ -23,18 +24,8 @@ const NewProduct = () => {
     const [product, setProduct] = useState({})
 
     const categories = [
-        'Electronics',
-        'Cameras',
-        'Laptops',
-        'Accessories',
-        'Headphones',
-        'Food',
-        "Books",
-        'Clothes/Shoes',
-        'Beauty/Health',
-        'Sports',
-        'Outdoor',
-        'Home'
+        'Bluetooth',
+        'Wired'
     ]
 
     let navigate = useNavigate()
@@ -76,7 +67,7 @@ const NewProduct = () => {
        
     }
     const newProduct = async (formData) => {
-       
+       console.log('User Token:', getToken());
         try {
             const config = {
                 headers: {
@@ -85,12 +76,14 @@ const NewProduct = () => {
                 }
             }
 
-            const { data } = await axios.post(`${process.env.REACT_APP_API}/api/v1/Admin/product/new`, formData)
+            const { data } = await axios.post(`${process.env.REACT_APP_API}/api/v1/Admin/product/new`, formData, config, authenticate)
             setLoading(false)
             setSuccess(data.success)
             setProduct(data.product)
+            
         } catch (error) {
             setError(error.response.data.message)
+            
 
         }
     }

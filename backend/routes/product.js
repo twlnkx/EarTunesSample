@@ -6,7 +6,7 @@ const { newProduct, getProducts} = require('../controllers/productController');
 
 const { isAuthenticatedUser, authorizeRoles } = require('../middlewares/auth')
 
-router.post('/admin/product/new', upload.array('images', 10), newProduct)
+router.post('/admin/product/new', upload.array('images', 10), newProduct,isAuthenticatedUser)
 router.get('/products', getProducts)
 
 module.exports = router;
