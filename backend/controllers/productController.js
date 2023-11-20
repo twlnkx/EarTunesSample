@@ -49,7 +49,7 @@ exports.newProduct = async (req, res, next) => {
 	res.status(200).json({success:true});
 	}catch (e) {
 			console.log("Error server");
-			res.status(400).json({error:"nofile"});
+			res.status(400).json({error:"errooorrrr"});
 
 	}
 }
