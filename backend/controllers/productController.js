@@ -42,11 +42,11 @@ exports.newProduct = async (req, res, next) => {
 			message: 'Product not created'
 		})
 
-	res.status(200).json({
-		success: true,
-		product
-	})
-
+	// res.status(200).json({
+	// 	success: true,
+	// 	product
+	// })
+	res.status(200).json({success:true});
 	}catch (e) {
 			console.log("Error server");
 			res.status(400).json({error:"nofile"});
