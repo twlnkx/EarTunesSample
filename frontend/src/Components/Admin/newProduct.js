@@ -9,7 +9,6 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 const NewProduct = () => {
-
     const [name, setName] = useState('');
     const [price, setPrice] = useState(0);
     const [description, setDescription] = useState('');
@@ -40,6 +39,7 @@ const NewProduct = () => {
         formData.set('category', category);
         formData.set('stock', stock);
         formData.set('seller', seller);
+        
 
         images.forEach(image => {
             formData.append('images', image)
@@ -47,6 +47,7 @@ const NewProduct = () => {
         
         newProduct(formData)
     }
+    
 
     const onChange = e => {
         const files = Array.from(e.target.files)
@@ -67,7 +68,7 @@ const NewProduct = () => {
        
     }
     const newProduct = async (formData) => {
-       console.log('User Token:', getToken());
+      
         try {
             const config = {
                 headers: {
@@ -78,14 +79,21 @@ const NewProduct = () => {
 
             const { data } = await axios.post(`${process.env.REACT_APP_API}/api/v1/Admin/product/new`, formData, config, authenticate)
             setLoading(false)
-            setSuccess(data.success)
-            setProduct(data.product)
-            
+            setSuccess(true)
+            setName(data.name)
+            setPrice(data.price)
+            setDescription(data.description)
+            setCategory(data.category)
+            setStock(data.stock)
+            setSeller(data.seller)
         } catch (error) {
-            setError(error.response.data.message)
+            // setError(error.response.data.message)
+
+            console.log(error)
             
 
         }
+       
     }
     useEffect(() => {
 

@@ -12,12 +12,12 @@ import NewProduct from './Components/Admin/newProduct';
 
 
 function App() {
-  fetch("api/register",{
-        headers: {
-          "Content-Type": "application/json",
-        },
-        method: "post",
-      });
+  // fetch("api/register",{
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       method: "post",
+  //     });
 
   return (
     <div className="App">
