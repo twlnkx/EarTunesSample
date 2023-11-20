@@ -86,6 +86,7 @@ const NewProduct = () => {
             setCategory(data.category)
             setStock(data.stock)
             setSeller(data.seller)
+            
         } catch (error) {
             // setError(error.response.data.message)
 
