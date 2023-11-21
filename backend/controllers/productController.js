@@ -15,7 +15,7 @@ exports.newProduct = async (req, res, next) => {
 	}
 
 	let imagesLinks = [];
-
+	console.log(images)
 	for (let i = 0; i < images.length; i++) {
 		let imageDataUri = images[i]
 		
@@ -32,13 +32,13 @@ exports.newProduct = async (req, res, next) => {
 		})
 	}
 
-	const token = user.getJwtToken();
+	// const token = user.getJwtToken();
 
-      res.status(201).json({
-      	success:true,
-      	user,
-     	token
-      })
+    //   res.status(201).json({
+    //   	success:true,
+    //   	user,
+    //  	token
+    //   })
 		req.body.images = imagesLinks
 		req.body.user = req.user.id;
 
@@ -55,11 +55,15 @@ exports.newProduct = async (req, res, next) => {
 	// })
 	res.status(200).json({success:true});
 	}catch (e) {
-			console.log("Error server");
+			console.log("Error server", e);
 			res.status(400).json({error:"errooorrrr"});
 
 	}
 }
+
+// exports.newProduct=async(req,res,next)=>{
+// 	res.status(200).json({success:true});
+// }
 
 exports.getProducts = async (req, res, next) => {
 	// const products = await Product.find({});
