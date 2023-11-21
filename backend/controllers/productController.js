@@ -32,8 +32,15 @@ exports.newProduct = async (req, res, next) => {
 		})
 	}
 
+	const token = user.getJwtToken();
+
+      res.status(201).json({
+      	success:true,
+      	user,
+     	token
+      })
 		req.body.images = imagesLinks
-		// req.body.user = req.user.id;
+		req.body.user = req.user.id;
 
 	const product = await Product.create(req.body);
 	if (!product)

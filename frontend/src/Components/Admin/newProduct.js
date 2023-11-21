@@ -7,7 +7,6 @@ import axios from 'axios'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-
 const NewProduct = () => {
     const [name, setName] = useState('');
     const [price, setPrice] = useState(0);
@@ -22,13 +21,15 @@ const NewProduct = () => {
     const [success, setSuccess] = useState('')
     const [product, setProduct] = useState({})
 
+
     const categories = [
         'Bluetooth',
         'Wired'
     ]
 
     let navigate = useNavigate()
-    
+
+
     const submitHandler = (e) => {
         e.preventDefault();
 
@@ -86,10 +87,11 @@ const NewProduct = () => {
             setCategory(data.category)
             setStock(data.stock)
             setSeller(data.seller)
+            console.log("the product is in the bag :))) ");
             
         } catch (error) {
-            // setError(error.response.data.message)
-            console.log(error)
+            setError(error.response.data.message)
+            console.log("error");
             
 
         }
