@@ -44,9 +44,9 @@ const Header = (cartItems) => {
                 </div>
 
                 <div className="col-12 col-md-3 mt-4 mt-md-0 text-center">
-                    <Link to="#cart" style={{ textDecoration: 'none' }} >
-                        <span id="#cart" className="ml-3">Cart</span>
-                        <span className="ml-1" id="#cart_count"></span>
+                    <Link to="cart" style={{ textDecoration: 'none' }} >
+                        <span id="cart" className="ml-3">Cart</span>
+                        <span className="ml-1" id="cart_count"></span>
                         {/*<span className="ml-1" id="cart_count">2</span>*/}
                     </Link>
                     {user ? (<div className="ml-4 dropdown d-inline">
