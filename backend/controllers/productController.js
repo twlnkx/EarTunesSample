@@ -3,7 +3,6 @@ const APIFeatures = require('../utils/apiFeatures')
 const cloudinary = require('cloudinary')
 
 
-
 exports.newProduct = async (req, res, next) => {
 	
 	try{
@@ -56,6 +55,7 @@ exports.newProduct = async (req, res, next) => {
 
 exports.getProducts = async (req, res, next) => {
 	// const products = await Product.find({});
+	try{
 	const resPerPage = 4;
 	const productsCount = await Product.countDocuments();
 	const apiFeatures = new APIFeatures(Product.find(), req.query).search().filter()
@@ -76,7 +76,14 @@ exports.getProducts = async (req, res, next) => {
 		resPerPage,
 		filteredProductsCount,
 	})
+	  }catch (e){
+		console.log("get product error", e)
+	  }
 }
+
+// exports.getProducts = async (req,res,next) =>{
+// 	res.status(200).json({success:true});
+// }
 
 exports.getSingleProduct = async (req, res, next) => {
 	const product = await Product.findById(req.params.id);
@@ -87,9 +94,13 @@ exports.getSingleProduct = async (req, res, next) => {
 			success: false,
 			message: 'Product not found'
 		})
-	}}catch(e){
+	}
+	res.status(200).json({success:true});
+	}catch(e){
 	console.log("getSingleProduct error", e)
 	}
+
+	console.log("Ready Error")
 }
 
 exports.getSingleProduct=async(req,res,next)=>{

@@ -6,7 +6,7 @@ import Loader from '../Layout/Loader'
 import MetaData from '../Layout/Metadata'
 
 import axios from 'axios'
-import { toast } from 'react-toastify';
+import { toast, } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { getUser, getToken, successMsg, errMsg } from '../../utils/helpers'
 // import ListReviews from '../Review/ListReviews'
@@ -200,6 +200,7 @@ const ProductDetails = ({ cartItems, addItemToCart }) => {
                             {user ? <button id="review_btn" type="button" className="btn btn-primary mt-4" data-toggle="modal" data-target="#ratingModal" onClick={setUserRatings} >
                                 Submit Your Review
                             </button> : <div className="alert alert-danger mt-5" type='alert'>Login to post your review.</div>}
+
                         </div>
                     </div>
                 </Fragment>

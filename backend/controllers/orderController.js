@@ -25,14 +25,17 @@ exports.newOrder = async (req, res, next) => {
         user: req.user._id
     })
 
+    try{
     if (!order) {
         return res.status(400).json({ message: `Order not saved` })
     }
-
     res.status(200).json({
         success: true,
         order
     })
+       }catch(e){
+        res.status(400).json({ message: 'order error' })
+    }
 }
 
 exports.getSingleOrder = async (req, res, next) => {
