@@ -27,8 +27,6 @@ exports.authorizeRoles = (...roles) => {
         // console.log(roles, req.user.role);
         if (!roles.includes(req.user.role)) {
             return res.status(403).json({message:`Role (${req.user.role}) is not allowed to acccess this resource`})
-            // return next(
-            //     new ErrorHandler(`Role (${req.user.role}) is not allowed to acccess this resource`, 403))
         }
         next()
     }

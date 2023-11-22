@@ -1,7 +1,7 @@
 const Product = require('../models/product')
 const APIFeatures = require('../utils/apiFeatures')
 const cloudinary = require('cloudinary')
-const user = require('../models/user')
+
 
 
 exports.newProduct = async (req, res, next) => {
@@ -18,27 +18,16 @@ exports.newProduct = async (req, res, next) => {
 	console.log(images)
 	for (let i = 0; i < images.length; i++) {
 		let imageDataUri = images[i]
-		
-
 		const result = await cloudinary.v2.uploader.upload(`${imageDataUri}`, {
 			folder: 'products',
 			width: 150,
 			crop: "scale",
 		});
-
 		imagesLinks.push({
 			public_id: result.public_id,
 			url: result.secure_url
 		})
 	}
-
-	// const token = user.getJwtToken();
-
-    //   res.status(201).json({
-    //   	success:true,
-    //   	user,
-    //  	token
-    //   })
 		req.body.images = imagesLinks
 		req.body.user = req.user.id;
 
@@ -57,8 +46,8 @@ exports.newProduct = async (req, res, next) => {
 	}catch (e) {
 			console.log("Error server", e);
 			res.status(400).json({error:"errooorrrr"});
-
 	}
+	
 }
 
 // exports.newProduct=async(req,res,next)=>{
@@ -87,4 +76,22 @@ exports.getProducts = async (req, res, next) => {
 		resPerPage,
 		filteredProductsCount,
 	})
+}
+
+exports.getSingleProduct = async (req, res, next) => {
+	const product = await Product.findById(req.params.id);
+	console.log("Ready")
+	try{
+	if (!product) {
+		return res.status(404).json({
+			success: false,
+			message: 'Product not found'
+		})
+	}}catch(e){
+	console.log("getSingleProduct error", e)
+	}
+}
+
+exports.getSingleProduct=async(req,res,next)=>{
+		res.status(200).json({success:true});
 }

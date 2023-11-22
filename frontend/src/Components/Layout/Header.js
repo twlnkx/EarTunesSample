@@ -7,7 +7,7 @@ import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 
 
-const Header = () => {
+const Header = (cartItems) => {
     const [user, setUser] = useState({})
     const navigate = useNavigate()
     const logoutUser = async () => {
