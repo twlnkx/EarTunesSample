@@ -65,7 +65,6 @@ const Register = () => {
             const config = {
                 headers: {
                     'Content-Type': 'multipart/form-data',
-                    
                 }
             }
             console.log(userData); 

@@ -87,22 +87,17 @@ exports.getProducts = async (req, res, next) => {
 
 exports.getSingleProduct = async (req, res, next) => {
 	const product = await Product.findById(req.params.id);
-	console.log("Ready")
 	try{
-	if (!product) {
-		return res.status(404).json({
-			success: false,
-			message: 'Product not found'
-		})
-	}
-	res.status(200).json({success:true});
+			if (!product) {
+			return res.status(404).json({
+				success: false,				
+				message: 'Product not found'
+										})
+			}else{
+				res.status(200).json(product)}
 	}catch(e){
-	console.log("getSingleProduct error", e)
-	}
-
-	console.log("Ready Error")
+			console.log("getSingleProduct error", e)
+			res.status(400).json({error:"error getsingle product"})
+		}
 }
 
-exports.getSingleProduct=async(req,res,next)=>{
-		res.status(200).json({success:true});
-}

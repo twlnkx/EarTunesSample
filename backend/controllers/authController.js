@@ -26,14 +26,6 @@ exports.registerUser = async (req, res, next) => {
         },
         // role,
     })
-    //test token
-    //  const token = user.getJwtToken();
-
-    //   res.status(201).json({
-    //   	success:true,
-    //   	user,
-    //  	token
-    //   })
     sendToken(user, 200, res)
     console.log(user);
     }catch(e){

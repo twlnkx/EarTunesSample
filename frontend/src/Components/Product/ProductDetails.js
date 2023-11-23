@@ -28,6 +28,8 @@ const ProductDetails = ({ cartItems, addItemToCart }) => {
 
 
     let { id } = useParams()
+     //useParams - gets the variable from the url
+
     let navigate = useNavigate()
     // const alert = useAlert();
     // const { cartItems } = state
@@ -36,17 +38,12 @@ const ProductDetails = ({ cartItems, addItemToCart }) => {
         let link = `http://localhost:4012/api/v1/product/${id}`
         try {
             let res = await axios.get(link)
-            setProduct(res.data.product)
+            setProduct(res.data)
             setLoading(false)
-
         } catch (err) {
             console.log(err)
-
-            // setLoading(false)
             setError('Product not found')
             setLoading(false)
-            // toast.error(error)
-            // toast.error(err.response.data.message)
         }
 
     }
@@ -64,88 +61,21 @@ const ProductDetails = ({ cartItems, addItemToCart }) => {
         setQuantity(qty)
     }
 
-
     const addToCart = async () => {
         await addItemToCart(id, quantity);
     }
-    function setUserRatings() {
-        const stars = document.querySelectorAll('.star');
-        stars.forEach((star, index) => {
-            star.starValue = index + 1;
-            ['click', 'mouseover', 'mouseout'].forEach(function (e) {
-                star.addEventListener(e, showRatings);
-            })
-        })
-        function showRatings(e) {
-            stars.forEach((star, index) => {
-                if (e.type === 'click') {
-                    if (index < this.starValue) {
-                        star.classList.add('orange');
-                        setRating(this.starValue)
-                    } else {
-                        star.classList.remove('orange')
-                    }
-                }
-                if (e.type === 'mouseover') {
-                    if (index < this.starValue) {
-                        star.classList.add('yellow');
-                    } else {
-                        star.classList.remove('yellow')
-                    }
-                }
-                if (e.type === 'mouseout') {
-                    star.classList.remove('yellow')
-                }
-            })
-        }
-    }
 
-    const newReview = async (reviewData) => {
-        try {
-            const config = {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${getToken()}`
-                }
-            }
-
-            const { data } = await axios.put(`${process.env.REACT_APP_API}/api/v1/review`, reviewData, config)
-            setSuccess(data.success)
-
-        } catch (error) {
-            setErrorReview(error.response.data.message)
-        }
-    }
-
-    const reviewHandler = () => {
-        const formData = new FormData();
-        formData.set('rating', rating);
-        formData.set('comment', comment);
-        formData.set('productId', id);
-        newReview(formData)
-
-    }
-    useEffect(() => {
-        productDetails(id)
-        if (error) {
-            toast.error(error, {
-                position: toast.POSITION.TOP_LEFT
-            });
-            navigate('/')
-        }
-        if (errorReview) {
-            errMsg(errorReview)
-            setErrorReview('')
-        }
-        if (success) {
-            successMsg('Reivew posted successfully')
-            setSuccess(false)
-
-        }
-    }, [id, error, success, errorReview]);
-    localStorage.setItem('cartItems', JSON.stringify(cartItems))
+   
+    useEffect(function () {
+        //constant change
+        productDetails(id);
+    },[])
+    //dependcies list 
+    
+        localStorage.setItem('cartItems', JSON.stringify(cartItems))
+    
     // console.log(state.cartItems)
-    // console.log(cart)
+    console.log(cart)
     return (
         <Fragment>
 
@@ -197,9 +127,9 @@ const ProductDetails = ({ cartItems, addItemToCart }) => {
                             <hr />
                             <p id="product_seller mb-3">Sold by: <strong>{product.seller}</strong></p>
 
-                            {user ? <button id="review_btn" type="button" className="btn btn-primary mt-4" data-toggle="modal" data-target="#ratingModal" onClick={setUserRatings} >
+                            {/* {user ? <button id="review_btn" type="button" className="btn btn-primary mt-4" data-toggle="modal" data-target="#ratingModal" onClick={setUserRatings} >
                                 Submit Your Review
-                            </button> : <div className="alert alert-danger mt-5" type='alert'>Login to post your review.</div>}
+                            </button> : <div className="alert alert-danger mt-5" type='alert'>Login to post your review.</div>} */}
 
                         </div>
                     </div>

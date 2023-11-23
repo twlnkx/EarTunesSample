@@ -11,13 +11,14 @@ import Login from './Components/User/Login';
 import NewProduct from './Components/Admin/newProduct';
 import ProductDetails from './Components/Product/ProductDetails';
 import axios from 'axios';
-import { toast,  } from 'react-toastify';
+import { toast} from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import Cart from './Components/Cart/Cart';
 import Shipping from './Components/Cart/Shipping';
 import ConfirmOrder from './Components/Cart/ConfirmOrder';
 import Payment from "./Components/Cart/Payment";
 import OrderSuccess from "./Components/Cart/OrderSuccess";
+// import ProtectedRoute from './Components/Routes/ProtectedRoute';
 
 function App() {
   // fetch("api/register",{
