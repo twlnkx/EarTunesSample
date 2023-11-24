@@ -38,6 +38,10 @@ exports.newOrder = async (req, res, next) => {
     }
 }
 
+// exports.newOrder = async(res,req,next) => {
+//     res.status(200).json({success:true})
+// }
+
 exports.getSingleOrder = async (req, res, next) => {
     const order = await Order.findById(req.params.id).populate('user', 'name email')
 
