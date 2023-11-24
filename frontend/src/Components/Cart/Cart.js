@@ -67,7 +67,7 @@ const Cart = ({ addItemToCart, cartItems, removeItemFromCart }) => {
 
                                             <div className="col-4 col-lg-1 mt-4 mt-lg-0">
                                                 <i id="delete_cart_item" className="fa fa-trash btn btn-danger" onClick={() => removeCartItemHandler(item.product)} ></i>
-                                                {/* <i id="delete_cart_item" className="fa fa-trash btn btn-danger" ></i> */}
+                                                <i id="delete_cart_item" className="fa fa-trash btn btn-danger" ></i>
                                             </div>
 
                                         </div>

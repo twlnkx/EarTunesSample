@@ -66,32 +66,12 @@ const ProductDetails = ({ cartItems, addItemToCart }) => {
     }
 
    
-    // useEffect(function () {
-    //     constant change
-    //     productDetails(id);
-    // },[])
-    // dependcies list 
-    
-
     useEffect(() => {
-        productDetails(id)
-        if (error) {
-            toast.error(error, {
-                position: toast.POSITION.TOP_LEFT
-            });
-            navigate('/')
-        }
-        if (errorReview) {
-            errMsg(errorReview)
-            setErrorReview('')
-        }
-        if (success) {
-            successMsg('Reivew posted successfully')
-            setSuccess(false)
-
-        }
-    }, [id, error, success, errorReview]);
-
+        // constant change
+        productDetails(id);
+    },[id])
+    // dependencies list - they are the ones that constantly change
+    
         localStorage.setItem('cartItems', JSON.stringify(cartItems))
     
     // console.log(state.cartItems)

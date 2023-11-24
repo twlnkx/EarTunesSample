@@ -42,11 +42,11 @@ function App() {
     try {
       const { data } = await axios.get(`${process.env.REACT_APP_API}/api/v1/product/${id}`)
       const item = {
-        product: data.product._id,
-        name: data.product.name,
-        price: data.product.price,
-        image: data.product.images[0].url,
-        stock: data.product.stock,
+        product: data._id,
+        name: data.name,
+        price: data.price,
+        image: data.images[0].url,
+        stock: data.stock,
         quantity: quantity
       }
 
@@ -58,23 +58,26 @@ function App() {
           ...state,
           cartItems: state.cartItems.map(i => i.product === isItemExist.product ? item : i)
         })
-      }
-      else {
+        console.log("exists") //true
+      }else {
         setState({
           ...state,
           cartItems: [...state.cartItems, item]
         })
+        console.log("doesnot exists")
       }
 
       toast.success('Item Added to Cart', {
         position: toast.POSITION.BOTTOM_RIGHT
       })
-
+      console.log("cart done")
+      
     } catch (error) {
       toast.error(error, {
         position: toast.POSITION.TOP_LEFT
       });
       // navigate('/')
+      console.log("aint done",error)
     }
 
   }
