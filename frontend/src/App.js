@@ -20,7 +20,8 @@ import Payment from "./Components/Cart/Payment";
 import OrderSuccess from "./Components/Cart/OrderSuccess";
 import ListOrders from './Components/Order/ListOrders';
 import OrderDetails from './Components/Order/OrderDetails';
-// import ProtectedRoute from './Components/Routes/ProtectedRoute';
+import ProtectedRoute from './Components/Routes/ProtectedRoute';
+import OrdersList from './Components/Admin/OrdersList';
 
 function App() {
   // fetch("api/register",{
@@ -116,7 +117,7 @@ function App() {
           <Route path="/success" element={<OrderSuccess />} />
           <Route path="/orders/me" element={<ListOrders />} />
           <Route path="/order/:id" element={<OrderDetails />} />
-          {/* <Route path="/admin/orders" element={<ProtectedRoute isAdmin={true}><OrdersList /> </ProtectedRoute>}/> */}
+          <Route path="/admin/orders" element={<ProtectedRoute isAdmin={true}><OrdersList /> </ProtectedRoute>}/>
 
         </Routes>
       </Router>

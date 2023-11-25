@@ -9,7 +9,8 @@ const ProtectedRoute = ({ children, isAdmin = false }) => {
     const [error, setError] = useState('')
     const [user, setUser] = useState(getUser())
     const [isAuthenticated, setIsAuthenticated] = useState(false)
-    console.log(children.type.name, loading)
+    // console.log(children.type.name, loading)
+        /* why is the console log making the error  */
     
     if (loading === false) {
         if (!user) {
