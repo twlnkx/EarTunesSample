@@ -1,8 +1,6 @@
 const Order = require('../models/order');
 const Product = require('../models/product');
 
-
-
 exports.newOrder = async (req, res, next) => {
     const {
         orderItems,
@@ -59,5 +57,25 @@ exports.myOrders = async (req, res, next) => {
 }
 
 // exports.myOrders = async (req,res,next) => {
+//     res.status(200).json({success:true})
+// }
+
+exports.getSingleOrder = async (req, res, next) => {
+    const order = await Order.findById(req.params.id).populate('user', 'name email')
+
+    try {
+    if (!order) {
+        return res.status(404).json({ message: `No Order found with this ID` })
+    }
+    res.status(200).json({
+        success: true,
+        order
+    }) 
+        }catch(e){
+            res.status(400).json({error:"single order fetch error"})
+        }
+}
+
+// exports.getSingleOrder = async (req,res,next) => {
 //     res.status(200).json({success:true})
 // }
