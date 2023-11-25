@@ -14,7 +14,7 @@ app.use(express.urlencoded({limit: "50mb", extended: true }));
 app.use(cookie());
 
 app.use('/api/v1', auth);
-app.use('/api/v1',products);
-app.use('/api/v1',order)
+app.use('/api/v1', products);
+app.use('/api/v1', order)
 
 module.exports = app;

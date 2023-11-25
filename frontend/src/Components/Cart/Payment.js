@@ -52,6 +52,7 @@ const Payment = ({cartItems, shippingInfo}) => {
            }
     }
 
+
     const submitHandler = async (e) => {
         e.preventDefault();
         document.querySelector('#pay_btn').disabled = true;

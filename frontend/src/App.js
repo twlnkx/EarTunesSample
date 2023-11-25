@@ -18,6 +18,7 @@ import Shipping from './Components/Cart/Shipping';
 import ConfirmOrder from './Components/Cart/ConfirmOrder';
 import Payment from "./Components/Cart/Payment";
 import OrderSuccess from "./Components/Cart/OrderSuccess";
+import ListOrders from './Components/Order/ListOrders';
 // import ProtectedRoute from './Components/Routes/ProtectedRoute';
 
 function App() {
@@ -112,6 +113,8 @@ function App() {
           <Route path="/confirm" element={<ConfirmOrder cartItems={state.cartItems} shippingInfo={state.shippingInfo} />} />
           <Route path="/payment" element={<Payment cartItems={state.cartItems} shippingInfo={state.shippingInfo} />} />
           <Route path="/success" element={<OrderSuccess />} />
+          <Route path="/orders/me" element={<ListOrders />} />
+          {/* <Route path="/admin/orders" element={<ProtectedRoute isAdmin={true}><OrdersList /> </ProtectedRoute>}/> */}
 
         </Routes>
       </Router>
