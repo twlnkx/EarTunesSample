@@ -31,7 +31,7 @@ const Login = () => {
             }
             const { data } = await axios.post(`${process.env.REACT_APP_API}/api/v1/login`, { email, password }, config)
             console.log(data)
-            authenticate(data, () => navigate("/register"))
+            authenticate(data, () => navigate('/'))
 
         } catch (error) {
             toast.error("invalid user or password", {

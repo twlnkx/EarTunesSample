@@ -7,6 +7,10 @@ import { getToken } from '../../utils/helpers';
 import axios from 'axios'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import UserSalesChart from './UserSalesChart'
+import ProductSalesChart from './ProductSalesChart'
+import MonthlySalesChart from './MonthlySalesChart'
+import Sidebar from './SideBar';
 
 const Dashboard = () => {
 
@@ -39,7 +43,7 @@ const Dashboard = () => {
             setProducts(data.products)
             setLoading(false)
         } catch (error) {
-            setError(error.response.data.message)
+            setError(error)
         }
     }
 

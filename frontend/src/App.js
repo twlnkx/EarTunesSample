@@ -1,6 +1,5 @@
 // import logo from './logo.svg';
-// import './App.css';
-import './App.css';
+import './App.css'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import React, { useState } from "react";
 import Header from "./Components/Layout/Header";
@@ -22,6 +21,15 @@ import ListOrders from './Components/Order/ListOrders';
 import OrderDetails from './Components/Order/OrderDetails';
 import ProtectedRoute from './Components/Routes/ProtectedRoute';
 import OrdersList from './Components/Admin/OrdersList';
+import ProcessOrder from './Components/Admin/ProcessOrder';
+import ProductsList from "./Components/Admin/ProductsList";
+import Dashboard from "./Components/Admin/Dashboard";
+// import MonthlySalesChart from './Components/Admin/MonthlySalesChart';
+// import ProductSalesChart from './Components/Admin/ProductSalesChart';
+// import UserSalesChart from './Components/Admin/UserSalesChart';
+// import Sidebar from './Components/Admin/SideBar';
+
+
 
 function App() {
   // fetch("api/register",{
@@ -118,6 +126,10 @@ function App() {
           <Route path="/orders/me" element={<ListOrders />} />
           <Route path="/order/:id" element={<OrderDetails />} />
           <Route path="/admin/orders" element={<ProtectedRoute isAdmin={true}><OrdersList /> </ProtectedRoute>}/>
+          <Route path="/admin/order/:id" element={<ProcessOrder />} />
+          <Route path="/admin/products" element={<ProtectedRoute isAdmin={true}><ProductsList /></ProtectedRoute>}/>
+          <Route path="/dashboard" element={<ProtectedRoute isAdmin={true}><Dashboard /></ProtectedRoute>}/>
+
 
         </Routes>
       </Router>
