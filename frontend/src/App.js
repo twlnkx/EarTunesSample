@@ -24,11 +24,7 @@ import OrdersList from './Components/Admin/OrdersList';
 import ProcessOrder from './Components/Admin/ProcessOrder';
 import ProductsList from "./Components/Admin/ProductsList";
 import Dashboard from "./Components/Admin/Dashboard";
-// import MonthlySalesChart from './Components/Admin/MonthlySalesChart';
-// import ProductSalesChart from './Components/Admin/ProductSalesChart';
-// import UserSalesChart from './Components/Admin/UserSalesChart';
-// import Sidebar from './Components/Admin/SideBar';
-
+import UsersList from './Components/Admin/UsersList';
 
 
 function App() {
@@ -129,7 +125,8 @@ function App() {
           <Route path="/admin/order/:id" element={<ProcessOrder />} />
           <Route path="/admin/products" element={<ProtectedRoute isAdmin={true}><ProductsList /></ProtectedRoute>}/>
           <Route path="/dashboard" element={<ProtectedRoute isAdmin={true}><Dashboard /></ProtectedRoute>}/>
-
+          <Route path="/admin/users" element={ <ProtectedRoute isAdmin={true}> <UsersList /></ProtectedRoute>}/>
+              
 
         </Routes>
       </Router>

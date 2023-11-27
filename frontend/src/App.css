@@ -1,3 +1,4 @@
+@import '~@fortawesome/fontawesome-free/css/all.min.css';
 html,
 body {
   font-family: 'Amazon Ember';
@@ -32,8 +33,8 @@ nav {
 }
 
 .navbar-brand img{
-  height: 15%;
-  width: 15%;
+  height: 18%;
+  width: 18%;
 }
 
 
@@ -503,7 +504,7 @@ footer {
 #sidebar {
   min-width: 100%;
   max-width: 100%;
-  background: #232f3e;
+  background: #000000;
   color: #fff;
   transition: all 0.3s;
 }
