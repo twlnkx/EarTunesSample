@@ -154,29 +154,12 @@ exports.updatePassword = async (req, res, next) => {
 }
 
 exports.updateProfile = async (req, res, next) => {
+
+    try{
     const newUserData = {
         name: req.body.name,
         email: req.body.email
     }
-
-    // Update avatar
-    // if (req.body.avatar !== '') {
-    //     const user = await User.findById(req.user.id)
-
-    //     const image_id = user.avatar.public_id;
-    //     const res = await cloudinary.v2.uploader.destroy(image_id);
-
-    //     const result = await cloudinary.v2.uploader.upload(req.body.avatar, {
-    //         folder: 'avatars',
-    //         width: 150,
-    //         crop: "scale"
-    //     })
-
-    //     newUserData.avatar = {
-    //         public_id: result.public_id,
-    //         url: result.secure_url
-    //     }
-    // }
 
     const user = await User.findByIdAndUpdate(req.user.id, newUserData, {
         new: true,
@@ -186,6 +169,9 @@ exports.updateProfile = async (req, res, next) => {
     res.status(200).json({
         success: true
     })
+    }catch(e){
+        console.log(e)
+    }
 }
 
 exports.allUsers = async (req, res, next) => {
@@ -250,5 +236,68 @@ exports.allUsers = async (req, res, next) => {
     res.status(200).json({
         success: true,
         users
+    })
+}
+
+exports.getUserDetails = async (req, res, next) => {
+    const user = await User.findById(req.params.id);
+
+    if (!user) {
+        return res.status(400).json({ message: `User does not found with id: ${req.params.id}` })
+        // return next(new ErrorHandler(`User does not found with id: ${req.params.id}`))
+    }
+
+    res.status(200).json({
+        success: true,
+        user
+    })
+}
+
+exports.deleteUser = async (req, res, next) => {
+    const user = await User.findById(req.params.id);
+
+    try {
+    if (!user) {
+        console.log(req.params.id)
+        return res.status(401).json({ message: `User does not found with id: ${req.params.id}` })
+        // return next(new ErrorHandler(`User does not found with id: ${req.params.id}`))
+    }
+
+    
+    const image_id = user.avatar.public_id;
+    await cloudinary.v2.uploader.destroy(image_id);
+    await User.findByIdAndDelete(req.params.id);
+    return res.status(200).json({
+        success: true,
+    })
+    }catch(e){
+        console.log(e)
+    }
+}
+
+exports.updateUser = async (req, res, next) => {
+    const newUserData = {
+        name: req.body.name,
+        email: req.body.email,
+        role: req.body.role
+    }
+
+    const user = await User.findByIdAndUpdate(req.params.id, newUserData, {
+        new: true,
+        runValidators: true,
+        // useFindAndModify: false
+    })
+
+    return res.status(200).json({
+        success: true
+    })
+}
+
+exports.getUserProfile = async (req, res, next) => {
+    const user = await User.findById(req.user.id);
+
+    res.status(200).json({
+        success: true,
+        user
     })
 }

@@ -25,6 +25,9 @@ import ProcessOrder from './Components/Admin/ProcessOrder';
 import ProductsList from "./Components/Admin/ProductsList";
 import Dashboard from "./Components/Admin/Dashboard";
 import UsersList from './Components/Admin/UsersList';
+import UpdateUser from './Components/Admin/UpdateUser';
+import Profile from './Components/User/Profile';
+import UpdateProfile from './Components/User/UpdateProfile';
 
 
 function App() {
@@ -112,7 +115,8 @@ function App() {
           <Route path="/register" element={<Register />} exact="true" />
           <Route path="/login" element={<Login />} exact="true" />
           <Route path="/admin/product" element={<NewProduct />} exact="true" />
-          {/* <Route path="/me" element={<Profile />} exact="true" /> */}
+          <Route path="/me" element={<Profile />} exact="true" />
+          <Route path="/me/update" element={<UpdateProfile />} exact="true" />
           <Route path="/product/:id" element={<ProductDetails cartItems={state.cartItems} addItemToCart={addItemToCart} />} exact="true" />
           <Route path="/cart" element={<Cart cartItems={state.cartItems} addItemToCart = {addItemToCart} removeItemFromCart = {removeItemFromCart}/>} exact="true" />
           <Route path="/shipping" element={<Shipping shipping={state.shippingInfo} saveShippingInfo={saveShippingInfo} />} />
@@ -126,7 +130,7 @@ function App() {
           <Route path="/admin/products" element={<ProtectedRoute isAdmin={true}><ProductsList /></ProtectedRoute>}/>
           <Route path="/dashboard" element={<ProtectedRoute isAdmin={true}><Dashboard /></ProtectedRoute>}/>
           <Route path="/admin/users" element={ <ProtectedRoute isAdmin={true}> <UsersList /></ProtectedRoute>}/>
-              
+          <Route path="/admin/user/:id" element={<UpdateUser />} />
 
         </Routes>
       </Router>

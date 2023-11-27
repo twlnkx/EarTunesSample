@@ -67,7 +67,7 @@ const Header = (cartItems) => {
                                 <Link className="dropdown-item" to="dashboard">Dashboard</Link>
                             )}
                             <Link className="dropdown-item" to="orders/me">Orders</Link>
-                            <Link className="dropdown-item" to="#me">Profile</Link>
+                            <Link className="dropdown-item" to="/me">Profile</Link>
 
                             <Link
                                 className="dropdown-item text-danger" to="/" onClick={logoutHandler}

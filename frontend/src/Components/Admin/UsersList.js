@@ -31,7 +31,7 @@ const UsersList = () => {
             setLoading(false)
 
         } catch (error) {
-            setError(error.response.data.message)
+            setError(error)
             
         }
     }
@@ -42,7 +42,7 @@ const UsersList = () => {
             setLoading(false)
             
         } catch (error) {
-           setError(error.response.data.message)
+           setError(error)
            setError()
             
         }

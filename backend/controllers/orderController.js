@@ -116,13 +116,17 @@ exports.updateOrder = async (req, res, next) => {
 
 exports.deleteOrder = async (req, res, next) => {
     //TypeError: Order.findByIdAndRemove is not a function
-    const order = await Order.findByIdAndRemove(req.params.id)
+    const order = await Order.findByIdAndDelete(req.params.id)
+    try {
     if (!order) {
         return res.status(404).json({ message: `No Order found with this ID` })
     }
     res.status(200).json({
         success: true
     })
+    }catch(e){
+        console.log(e)
+    }
 }
 
 async function updateStock(id, quantity) {
