@@ -28,7 +28,8 @@ import UsersList from './Components/Admin/UsersList';
 import UpdateUser from './Components/Admin/UpdateUser';
 import Profile from './Components/User/Profile';
 import UpdateProfile from './Components/User/UpdateProfile';
-
+import NewSeller from './Components/Admin/newSeller';
+import SellerList from './Components/Admin/SellerList';
 
 function App() {
   // fetch("api/register",{
@@ -131,6 +132,8 @@ function App() {
           <Route path="/dashboard" element={<ProtectedRoute isAdmin={true}><Dashboard /></ProtectedRoute>}/>
           <Route path="/admin/users" element={ <ProtectedRoute isAdmin={true}> <UsersList /></ProtectedRoute>}/>
           <Route path="/admin/user/:id" element={<UpdateUser />} />
+          <Route path="/admin/seller/new" element={ <ProtectedRoute isAdmin={true}> <NewSeller /></ProtectedRoute>}/>
+          <Route path="/admin/sellers" element={ <ProtectedRoute isAdmin={true}> <SellerList /></ProtectedRoute>}/>
 
         </Routes>
       </Router>

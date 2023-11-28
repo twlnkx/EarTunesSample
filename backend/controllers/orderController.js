@@ -1,5 +1,6 @@
 const Order = require('../models/order');
 const Product = require('../models/product');
+const seller = require('../models/seller');
 
 exports.newOrder = async (req, res, next) => {
     const {
@@ -96,6 +97,14 @@ exports.allOrders = async (req, res, next) => {
     })
 }
 
+exports.allSellers = async (req,res,next) =>{
+    const sellers = await seller.find()
+
+    res.status(200).json({
+        success: true,
+    })
+}
+
 exports.updateOrder = async (req, res, next) => {
     const order = await Order.findById(req.params.id)
     if (order.orderStatus === 'Delivered') {
@@ -113,6 +122,7 @@ exports.updateOrder = async (req, res, next) => {
         success: true,
     })
 }
+
 
 exports.deleteOrder = async (req, res, next) => {
     //TypeError: Order.findByIdAndRemove is not a function
